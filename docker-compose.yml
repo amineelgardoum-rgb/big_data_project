@@ -1,0 +1,116 @@
+# version: '3.8'
+
+services:
+  # HDFS NameNode
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode
+    hostname: namenode
+    environment:
+      - CLUSTER_NAME=procurement-cluster
+    ports:
+      - "8020:8020"
+      - "9870:9870"
+    volumes:
+      - namenode_data:/hadoop/dfs/name
+      - ./data/raw:/data
+      - ./output/supplier_orders
+    healthcheck:
+      test: ["CMD-SHELL", " curl -f http://localhost:9870/ || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - procurement-net
+
+  # HDFS DataNode
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode
+    hostname: datanode
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:8020
+    ports:
+      - "9864:9864"
+    volumes:
+      - datanode_data:/hadoop/dfs/data
+    depends_on:
+      - namenode
+    networks:
+      - procurement-net
+
+  # PostgreSQL (single instance for both Hive and app)
+  postgres:
+    image: postgres:14
+    container_name: postgres
+    hostname: postgres
+    environment:
+      POSTGRES_USER: postgres_admin
+      POSTGRES_PASSWORD: supersecure
+      POSTGRES_DB: postgres_admin
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./config/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres_admin"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - procurement-net
+
+  # Hive Metastore
+  hive-metastore:
+    image: apache/hive:4.0.0
+    container_name: hive-metastore
+    hostname: hive-metastore
+    environment:
+      SERVICE_NAME: metastore
+      DB_DRIVER: postgres
+      SERVICE_OPTS: >
+        -Djavax.jdo.option.ConnectionDriverName=org.postgresql.Driver
+        -Djavax.jdo.option.ConnectionURL=jdbc:postgresql://postgres:5432/metastore_db
+        -Djavax.jdo.option.ConnectionUserName=metastore_user
+        -Djavax.jdo.option.ConnectionPassword=metastore_pass
+    volumes:
+        - ./config/postgres/postgresql.jar:/opt/hive/lib/postgresql.jar
+        - ./config/hive/hive-site.xml:/opt/hive/conf/hive-site.xml  
+
+    ports:
+      - "9083:9083"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      namenode:
+        condition: service_started
+    networks:
+      - procurement-net
+
+  # Trino
+  trino:
+    image: trinodb/trino:latest
+    container_name: trino
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./config/trino:/etc/trino
+      - ./sql/trino_init.sql:/trino_init.sql
+    environment:
+      - HADOOP_CONF_DIR=/etc/trino/hdfs
+    depends_on:
+      - hive-metastore
+      - namenode
+      - postgres
+    networks:
+      - procurement-net
+
+volumes:
+  namenode_data:
+  datanode_data:
+  postgres_data:
+
+networks:
+  procurement-net:
+    driver: bridge

@@ -1,0 +1,10 @@
+venv
+__pycache__
+.alpackages
+data
+*.pyc
+*.log
+logs
+output
+*.txt
+*.pyc.*
