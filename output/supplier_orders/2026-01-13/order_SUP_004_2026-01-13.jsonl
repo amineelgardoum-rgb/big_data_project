@@ -1,0 +1,2 @@
+{"supplier_id":"SUP_004","supplier_name":"Martinez-Esparza","order_date":"2026-01-13","sku_id":"SKU_0069","product_name":"Worry fish","pack_size":12,"min_order_qty":12,"unit_price":"0.72","daily_demand":466,"available_stock":381,"reserved_stock":99,"raw_demand":243,"order_quantity":252}
+{"supplier_id":"SUP_004","supplier_name":"Martinez-Esparza","order_date":"2026-01-13","sku_id":"SKU_0074","product_name":"Term door","pack_size":6,"min_order_qty":12,"unit_price":"18.28","daily_demand":409,"available_stock":464,"reserved_stock":88,"raw_demand":119,"order_quantity":120}

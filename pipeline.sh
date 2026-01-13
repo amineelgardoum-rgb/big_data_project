@@ -139,28 +139,36 @@ cat ${SUMMARY_FILE}
 rm -rf ${TEMP_DIR}
 # path to hdfs
 # Variables inside the script
-TMP_DIR="/tmp/supplier_orders/${DATE}"
-HDFS_DIR="/processed/suppliers_order/${DATE}"
-LOCAL_DIR="./output/supplier_orders/${DATE}"
+# Variables for exceptions
+# Variables
+EXCEPTION_FILE="$(pwd)/logs/exceptions/${DATE}_exceptions.jsonl"
+TMP_EXCEPTION_DIR="/tmp/exceptions/${DATE}"
+HDFS_EXCEPTION_DIR="/processed/exceptions/${DATE}"
 
-echo "Copying output files to temporary container folder: ${TMP_DIR}"
+# Ensure exception file exists
+if [ ! -f ${EXCEPTION_FILE} ]; then
+    echo "[]" > ${EXCEPTION_FILE}
+fi
 
-# Create temporary folder inside container
-docker exec namenode mkdir -p ${TMP_DIR}
+echo "Copying exception files to temporary container folder for HDFS..."
 
-# Copy files from Windows host into container tmp folder
-docker cp "${LOCAL_DIR}/." namenode:"${TMP_DIR}/"
+# Create tmp folder in container
+docker exec namenode mkdir -p ${TMP_EXCEPTION_DIR}
 
-# Ensure HDFS directory exists
-docker exec namenode hdfs dfs -mkdir -p "${HDFS_DIR}"
+# Copy file into container
+docker cp "${EXCEPTION_FILE}" namenode:"${TMP_EXCEPTION_DIR}/"
 
-# Put files into HDFS
-docker exec namenode hdfs dfs -put -f "${TMP_DIR}/*" "${HDFS_DIR}/"
+# Create HDFS directory
+docker exec namenode hdfs dfs -mkdir -p "${HDFS_EXCEPTION_DIR}"
 
-# Cleanup
-docker exec namenode rm -rf "${TMP_DIR}"
+# Put file into HDFS
+docker exec namenode hdfs dfs -put -f "${TMP_EXCEPTION_DIR}/*" "${HDFS_EXCEPTION_DIR}/"
 
-echo "The processed data is pushed to HDFS under ${HDFS_DIR}."
+# Cleanup tmp folder
+docker exec namenode rm -rf "${TMP_EXCEPTION_DIR}"
+
+echo "The exception data is pushed to HDFS under ${HDFS_EXCEPTION_DIR}."
+
 
 echo ""
 echo "=============================================="
