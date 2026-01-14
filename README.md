@@ -270,13 +270,13 @@ SUP002      | Dairy Products Inc      | sup2@example.com     | 1
 ```
 
 #### **products**
-
 ```sql
-sku_id  | product_name    | supplier_id | pack_size | min_order_qty | safety_stock
-------- | --------------- | ----------- | --------- | ------------- | ------------
-SKU001  | Organic Apples  | SUP001      | 10        | 20            | 50
-SKU002  | Fresh Milk      | SUP002      | 6         | 12            | 30
-```
+| sku_id | category   | product_name   | supplier_id | pack_size | min_order_qty | unit_price | safety_stock |
+| ------ | ---------- | -------------- | ----------- | --------- | ------------- | ---------- | ------------ |
+| SKU001 | Fruits     | Organic Apples | SUP001      | 10        | 20            | 2.50       | 50           |
+| SKU002 | Dairy      | Fresh Milk     | SUP002      | 6         | 12            | 3.20       | 30           |
+| SKU003 | Vegetables | Carrots        | SUP003      | 5         | 10            | 1.80       | 40           |
+```sql
 
 #### **warehouses**
 
