@@ -1,2 +1,0 @@
-{"supplier_id":"SUP_008","supplier_name":"King-Berger","order_date":"2026-01-13","sku_id":"SKU_0005","product_name":"International group","pack_size":6,"min_order_qty":12,"unit_price":"48.01","daily_demand":331,"available_stock":394,"reserved_stock":60,"raw_demand":72,"order_quantity":72}
-{"supplier_id":"SUP_008","supplier_name":"King-Berger","order_date":"2026-01-13","sku_id":"SKU_0027","product_name":"Per result","pack_size":24,"min_order_qty":24,"unit_price":"28.36","daily_demand":400,"available_stock":400,"reserved_stock":95,"raw_demand":116,"order_quantity":120}
