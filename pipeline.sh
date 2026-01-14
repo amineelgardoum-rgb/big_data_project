@@ -44,9 +44,9 @@ docker exec -i trino trino --execute "$(cat ${TEMP_DIR}/query_${DATE}.sql)" \
 
 if [ $? -eq 0 ]; then
     TOTAL_ORDERS=$(wc -l < ${OUTPUT_DIR}/all_orders_${DATE}.jsonl | tr -d ' ')
-    echo "✓ Net demand calculated: ${TOTAL_ORDERS} order lines"
+    echo " Net demand calculated: ${TOTAL_ORDERS} order lines"
 else
-    echo "✗ ERROR: Net demand calculation failed"
+    echo " ERROR: Net demand calculation failed"
     exit 1
 fi
 
@@ -66,11 +66,11 @@ for SUPPLIER in $SUPPLIERS; do
         > ${OUTPUT_DIR}/order_${SUPPLIER}_${DATE}.jsonl
     
     LINE_COUNT=$(wc -l < ${OUTPUT_DIR}/order_${SUPPLIER}_${DATE}.jsonl | tr -d ' ')
-    echo "  ✓ ${SUPPLIER}: ${LINE_COUNT} items"
+    echo "   ${SUPPLIER}: ${LINE_COUNT} items"
     SUPPLIER_COUNT=$((SUPPLIER_COUNT + 1))
 done
 
-echo "✓ Generated orders for ${SUPPLIER_COUNT} suppliers"
+echo " Generated orders for ${SUPPLIER_COUNT} suppliers"
 
 ##############################################
 # Step 3: Generate Exception Report
@@ -100,7 +100,7 @@ fi
 ##############################################
 echo "[5/5] Generating summary..."
 
-SUMMARY_FILE="./summary_${DATE}.txt"
+SUMMARY_FILE="./${OUTPUT_DIR}/summary_${DATE}.txt"
 
 cat > ${SUMMARY_FILE} << EOF
 ================================================

@@ -30,6 +30,3 @@ CALL hive.system.sync_partition_metadata('default', 'warehouse_inventory', 'FULL
 -- Sync partitions
 CALL hive.system.sync_partition_metadata('default', 'orders', 'FULL');
 
--- Query
--- SELECT * FROM hive.default.orders LIMIT 10;
--- SELECT * FROM hive.default.warehouse_inventory;
