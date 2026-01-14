@@ -185,7 +185,7 @@ procurement-pipeline/
 │           ├── all_orders_YYYY-MM-DD.jsonl
 │           ├── order_SUP001_YYYY-MM-DD.jsonl
 │           ├── order_SUP002_YYYY-MM-DD.jsonl
-│           └── today.txt
+│           └── YYYY-MM-DD.txt
 |
 |
 ├── logs/
@@ -236,25 +236,25 @@ procurement-pipeline/
 - Stock → HDFS: `/raw/stock/YYYY-MM-DD/*.csv`
 - Master Data → PostgreSQL tables
 
-**Example Order File** (`/raw/orders/today/order_001.jsonl`):
+**Example Order File** (`/raw/orders/YYYY-MM-DD/order_001.jsonl`):
 
 ```json
 {
-  "order_id": "ORD12345", "sku-id": "SKU001","quantity_ordered": 25,"orders_date": "today"
+  "order_id": "ORD12345", "sku-id": "SKU001","quantity_ordered": 25,"orders_date": "YYYY-MM-DD"
 }
 ```
 
-**Example Stock File** (`/raw/stock/today/warehouse_WH001.csv`):
+**Example Stock File** (`/raw/stock/YYYY-MM-DD/warehouse_WH001.csv`):
 
 ```csv
 warehouse_id,sku_id,available_quantity,reserved_quantity,stock_date
-WH001,SKU001,150,20,today
-WH001,SKU002,75,10,today
+WH001,SKU001,150,20,YYYY-MM-DD
+WH001,SKU002,75,10,YYYY-MM-DD
 ```
 
 ---
 
-### 2. Database Schema (`sql/create_tables.sql`)
+### 2. Database Schema (`config/postgres/init.sql`)
 
 **Purpose**: Define master data structure in PostgreSQL
 
@@ -314,7 +314,7 @@ net_demand = MAX(0, aggregated_orders + safety_stock - (available_stock - reserv
 -- Sum all customer orders per product
 SELECT sku_id, SUM(quantity_ordered) as total_ordered
 FROM orders
-WHERE orders_date = 'today'
+WHERE orders_date = 'YYYY-MM-DD'
 GROUP BY sku_id
 ```
 
@@ -333,7 +333,7 @@ SELECT sku_id,
        SUM(available_quantity) as total_available,
        SUM(reserved_quantity) as total_reserved
 FROM warehouse_inventory
-WHERE stock_date = 'today'
+WHERE stock_date = 'YYYY-MM-DD'
 GROUP BY sku_id
 ```
 
@@ -482,7 +482,7 @@ HAVING SUM(quantity_ordered) > products.safety_stock * 5
     
 [5/5] Summary Report
       ↓ Bash text generation
-      Outputs: today.txt
+      Outputs: YYYY-MM-DD.txt
     
 [6] Archive to HDFS
       ↓ Docker + HDFS commands
@@ -523,7 +523,7 @@ docker exec -it trino trino
 
 ### Daily Execution
 
-**Run for today**:
+**Run for YYYY-MM-DD**:
 
 ```bash
 ./pipeline.sh
@@ -532,7 +532,7 @@ docker exec -it trino trino
 **Run for specific date**:
 
 ```bash
-./pipeline.sh today
+./pipeline.sh YYYY-MM-DD
 ```
 
 **What happens**:
@@ -548,9 +548,9 @@ docker exec -it trino trino
 
 ```
 ==============================================
-Procurement Pipeline - today
+Procurement Pipeline - YYYY-MM-DD
 ==============================================
-Start time: today 22:05:30
+Start time: YYYY-MM-DD 22:05:30
 [1/5] Creating the data and ingest Stage
 ✓ Generated 500 orders
 ✓ Generated 50 inventory snapshots
@@ -573,14 +573,14 @@ Start time: today 22:05:30
 ================================================
 PROCUREMENT PIPELINE SUMMARY
 ================================================
-Date: today
+Date: YYYY-MM-DD
 Total Order Lines: 45
 Suppliers Processed: 3
 Exceptions Found: 2
 
 ==============================================
 Pipeline completed successfully!
-End time: today 22:06:15
+End time: YYYY-MM-DD 22:06:15
 ==============================================
 ```
 
@@ -590,15 +590,15 @@ End time: today 22:06:15
 
 ### 1. All Orders File
 
-**File**: `output/supplier_orders/today/all_orders_today.jsonl`
+**File**: `output/supplier_orders/YYYY-MM-DD/all_orders_YYYY-MM-DD.jsonl`
 
 **Content**: Complete list of all products to order (all suppliers combined)
 
 **Format**: One JSON object per line
 
 ```json
-{"supplier_id":"SUP001","supplier_name":"Fresh Foods","order_date":"today","sku_id":"SKU001","product_name":"Organic Apples","pack_size":10,"min_order_qty":20,"unit_price":2.50,"daily_demand":120,"available_stock":200,"reserved_stock":30,"raw_demand":0,"order_quantity":0}
-{"supplier_id":"SUP002","supplier_name":"Dairy Products","order_date":"today","sku_id":"SKU002","product_name":"Fresh Milk","pack_size":6,"min_order_qty":12,"unit_price":3.20,"daily_demand":45,"available_stock":50,"reserved_stock":10,"raw_demand":35,"order_quantity":36}
+{"supplier_id":"SUP001","supplier_name":"Fresh Foods","order_date":"YYYY-MM-DD","sku_id":"SKU001","product_name":"Organic Apples","pack_size":10,"min_order_qty":20,"unit_price":2.50,"daily_demand":120,"available_stock":200,"reserved_stock":30,"raw_demand":0,"order_quantity":0}
+{"supplier_id":"SUP002","supplier_name":"Dairy Products","order_date":"YYYY-MM-DD","sku_id":"SKU002","product_name":"Fresh Milk","pack_size":6,"min_order_qty":12,"unit_price":3.20,"daily_demand":45,"available_stock":50,"reserved_stock":10,"raw_demand":35,"order_quantity":36}
 ```
 
 **Use**: Complete record for analysis and auditing
@@ -607,15 +607,15 @@ End time: today 22:06:15
 
 ### 2. Supplier Order Files
 
-**Files**: `output/supplier_orders/today/order_SUP001_today.jsonl`
+**Files**: `output/supplier_orders/YYYY-MM-DD/order_SUP001_YYYY-MM-DD.jsonl`
 
 **Content**: Orders for ONE specific supplier only
 
 **Format**: Same as all_orders but filtered
 
 ```json
-{"supplier_id":"SUP001","supplier_name":"Fresh Foods","order_date":"today","sku_id":"SKU003","product_name":"Bananas","order_quantity":50,"pack_size":10,"unit_price":1.80}
-{"supplier_id":"SUP001","supplier_name":"Fresh Foods","order_date":"today","sku_id":"SKU005","product_name":"Tomatoes","order_quantity":40,"pack_size":5,"unit_price":2.20}
+{"supplier_id":"SUP001","supplier_name":"Fresh Foods","order_date":"YYYY-MM-DD","sku_id":"SKU003","product_name":"Bananas","order_quantity":50,"pack_size":10,"unit_price":1.80}
+{"supplier_id":"SUP001","supplier_name":"Fresh Foods","order_date":"YYYY-MM-DD","sku_id":"SKU005","product_name":"Tomatoes","order_quantity":40,"pack_size":5,"unit_price":2.20}
 ```
 
 **Use**: Send this file directly to the supplier for order fulfillment
@@ -624,7 +624,7 @@ End time: today 22:06:15
 
 ### 3. Exception Report
 
-**File**: `logs/exceptions/today_exceptions.jsonl`
+**File**: `logs/exceptions/YYYY-MM-DD_exceptions.jsonl`
 
 **Content**: Data quality issues detected
 
@@ -648,7 +648,7 @@ End time: today 22:06:15
 
 ### 4. Summary Report
 
-**File**: `output/supplier_orders/today/summary_today.txt`
+**File**: `output/supplier_orders/YYYY-MM-DD/summary_YYYY-MM-DD.txt`
 
 **Content**: Human-readable overview
 
@@ -656,8 +656,8 @@ End time: today 22:06:15
 ================================================
 PROCUREMENT PIPELINE SUMMARY
 ================================================
-Date: today
-Execution Time: today 22:06:15
+Date: YYYY-MM-DD
+Execution Time: YYYY-MM-DD 22:06:15
 
 RESULTS:
 --------
@@ -667,9 +667,9 @@ Exceptions Found: 2
 
 OUTPUT FILES:
 -------------
-All Orders: output/supplier_orders/today/all_orders_today.jsonl
-Supplier Orders: output/supplier_orders/today/order_*_today.jsonl
-Exceptions: logs/exceptions/today_exceptions.jsonl
+All Orders: output/supplier_orders/YYYY-MM-DD/all_orders_YYYY-MM-DD.jsonl
+Supplier Orders: output/supplier_orders/YYYY-MM-DD/order_*_YYYY-MM-DD.jsonl
+Exceptions: logs/exceptions/YYYY-MM-DD_exceptions.jsonl
 
 SUPPLIER BREAKDOWN:
 -------------------
@@ -684,7 +684,7 @@ SUP003:                 12 items
 
 ### 5. HDFS Archive
 
-**Location**: `/processed/suppliers_order/today/`
+**Location**: `/processed/suppliers_order/YYYY-MM-DD/`
 
 **Content**: All supplier order files stored permanently in HDFS
 
@@ -699,10 +699,10 @@ SUP003:                 12 items
 
 ```bash
 # List archived files
-docker exec namenode hdfs dfs -ls /processed/suppliers_order/today/
+docker exec namenode hdfs dfs -ls /processed/suppliers_order/YYYY-MM-DD/
 
 # Read a file
-docker exec namenode hdfs dfs -cat /processed/suppliers_order/today/order_SUP001_today.jsonl
+docker exec namenode hdfs dfs -cat /processed/suppliers_order/YYYY-MM-DD/order_SUP001_YYYY-MM-DD.jsonl
 ```
 
 ---
@@ -728,7 +728,7 @@ docker exec namenode hdfs dfs -cat /processed/suppliers_order/today/order_SUP001
 ├── 2025-01-12/
 │   ├── order_001.json
 │   └── order_002.json
-└── today/
+└── YYYY-MM-DD/
     ├── order_001.json
     └── order_002.json
 ```
@@ -736,8 +736,8 @@ docker exec namenode hdfs dfs -cat /processed/suppliers_order/today/order_SUP001
 **Trino query**:
 
 ```sql
--- Automatically reads only today partition
-SELECT * FROM orders WHERE orders_date = 'today'
+-- Automatically reads only YYYY-MM-DD partition
+SELECT * FROM orders WHERE orders_date = 'YYYY-MM-DD'
 ```
 
 ---
@@ -756,10 +756,10 @@ SELECT * FROM orders WHERE orders_date = 'today'
 ```
 Trino Coordinator
     ↓
-    ├─ Worker 1: Read /raw/orders/today/ (partition 1)
-    ├─ Worker 2: Read /raw/orders/today/ (partition 2)
+    ├─ Worker 1: Read /raw/orders/YYYY-MM-DD/ (partition 1)
+    ├─ Worker 2: Read /raw/orders/YYYY-MM-DD/ (partition 2)
     ├─ Worker 3: Read PostgreSQL products table
-    └─ Worker 4: Read /raw/stock/today/
+    └─ Worker 4: Read /raw/stock/YYYY-MM-DD/
     ↓
 Coordinator: Joins, aggregates, calculates
     ↓
@@ -876,13 +876,13 @@ docker exec trino /usr/local/bin/trino --execute "..."
 
 ```bash
 # Check if data exists in HDFS
-docker exec namenode hdfs dfs -ls /raw/orders/today/
+docker exec namenode hdfs dfs -ls /raw/orders/YYYY-MM-DD/
 
 # If empty, run data generation manually
 python main.py
 
 # Check Trino can read it
-docker exec trino trino --execute "SELECT COUNT(*) FROM hive.default.orders WHERE orders_date = 'today'"
+docker exec trino trino --execute "SELECT COUNT(*) FROM hive.default.orders WHERE orders_date = 'YYYY-MM-DD'"
 ```
 
 ---
