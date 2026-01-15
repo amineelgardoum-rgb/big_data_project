@@ -20,7 +20,8 @@ TEMP_DIR="tmp/procurement_${DATE}"
 mkdir -p ${OUTPUT_DIR}
 mkdir -p ${LOGS_DIR}
 mkdir -p ${TEMP_DIR}
-
+docker compose up --build -d 
+sleep 10
 echo "=============================================="
 echo "Procurement Pipeline - ${DATE}"
 echo "=============================================="
@@ -36,6 +37,7 @@ echo "[2/5] Calculating net demand..."
 
 # Replace date in SQL file
 sed "s/\${DATE}/${DATE}/g" ./sql/net_demand_query.sql > ${TEMP_DIR}/query_${DATE}.sql
+docker exec -i trino trino --server http://localhost:8080 < ./sql/trino_init.sql
 
 # Execute query and save to JSONL
 docker exec -i trino trino --execute "$(cat ${TEMP_DIR}/query_${DATE}.sql)" \
@@ -77,7 +79,7 @@ echo " Generated orders for ${SUPPLIER_COUNT} suppliers"
 ##############################################
 echo "[4/5] Generating exception report..."
 
-sed "s/\${DATE}/${DATE}/g" exception_check.sql > ${TEMP_DIR}/exceptions_${DATE}.sql
+sed "s/\${DATE}/${DATE}/g" ./sql/exception_check.sql > ${TEMP_DIR}/exceptions_${DATE}.sql
 
 docker exec -i trino trino --execute "$(cat ${TEMP_DIR}/exceptions_${DATE}.sql)" \
       --output-format JSON \
@@ -138,26 +140,15 @@ cat ${SUMMARY_FILE}
 rm -rf ${TEMP_DIR}
 # path to hdfs
 # Variables inside the script
-TMP_DIR="/tmp/supplier_orders/${DATE}"
 HDFS_DIR="/processed/suppliers_order/${DATE}"
-LOCAL_DIR="./output/supplier_orders/${DATE}"
-
-echo "Copying output files to temporary container folder: ${TMP_DIR}"
-
-# Create temporary folder inside container
-docker exec namenode mkdir -p ${TMP_DIR}
-
-# Copy files from Windows host into container tmp folder
-docker cp "${LOCAL_DIR}/." namenode:"${TMP_DIR}/"
+CONTAINER_OUTPUT_DIR="/output/${DATE}"
 
 # Ensure HDFS directory exists
 docker exec namenode hdfs dfs -mkdir -p "${HDFS_DIR}"
 
-# Put files into HDFS
-docker exec namenode hdfs dfs -put -f "${TMP_DIR}/*" "${HDFS_DIR}/"
+# Put files into HDFS from mounted volume
+docker exec namenode hdfs dfs -put -f ${CONTAINER_OUTPUT_DIR}/* "${HDFS_DIR}/"
 
-# Cleanup
-docker exec namenode rm -rf "${TMP_DIR}"
 
 echo "The processed data is pushed to HDFS under ${HDFS_DIR}."
 

@@ -5,6 +5,7 @@ __pycache__
 *.pyc
 *.log
 logs
-# output
+output
 *.txt
 *.pyc.*
+tmp

@@ -14,7 +14,7 @@ services:
     volumes:
       - namenode_data:/hadoop/dfs/name
       - ./data/raw:/data
-      - ./output/supplier_orders
+      - ./output/supplier_orders:/output
     healthcheck:
       test: ["CMD-SHELL", " curl -f http://localhost:9870/ || exit 1"]
       interval: 5s

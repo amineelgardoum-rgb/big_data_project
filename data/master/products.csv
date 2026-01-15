@@ -1,101 +1,101 @@
 sku_id,product_name,category,supplier_id,pack_size,min_order_qty,unit_price,safety_stock
-SKU_0001,Choose manage,Frozen,SUP_003,12,48,32.6,80
-SKU_0002,Customer consumer,Dairy,SUP_001,24,12,47.24,36
-SKU_0003,From age,Personal Care,SUP_008,6,24,22.15,75
-SKU_0004,Growth dog,Personal Care,SUP_001,6,48,35.23,98
-SKU_0005,International group,Vegetables,SUP_008,6,12,48.01,75
-SKU_0006,Get night,Snacks,SUP_001,24,24,48.25,68
-SKU_0007,Three worker,Vegetables,SUP_010,6,24,42.12,18
-SKU_0008,Offer fall,Personal Care,SUP_006,6,12,7.55,98
-SKU_0009,Man stock,Beverages,SUP_003,6,12,8.53,20
-SKU_0010,Think store,Beverages,SUP_010,6,48,17.15,30
-SKU_0011,Letter situation,Dairy,SUP_001,12,24,29.46,18
-SKU_0012,Heavy note,Frozen,SUP_010,12,24,39.12,67
-SKU_0013,Floor new,Vegetables,SUP_002,12,12,4.98,74
-SKU_0014,Find public,Beverages,SUP_004,24,12,34.44,47
-SKU_0015,Series able,Beverages,SUP_007,1,48,33.5,50
-SKU_0016,Per specific,Personal Care,SUP_009,1,48,14.18,28
-SKU_0017,Behind Congress,Meat,SUP_006,24,24,38.51,31
-SKU_0018,Yeah ever,Snacks,SUP_009,24,48,29.43,76
-SKU_0019,Wide PM,Personal Care,SUP_004,24,12,19.04,53
-SKU_0020,Base series,Bakery,SUP_006,1,24,40.33,84
-SKU_0021,West something,Meat,SUP_006,6,48,38.57,53
-SKU_0022,Vote work,Fruits,SUP_009,12,24,21.45,99
-SKU_0023,Collection its,Vegetables,SUP_010,6,12,20.97,33
-SKU_0024,Guy project,Fruits,SUP_007,6,48,19.91,20
-SKU_0025,Just bill,Vegetables,SUP_002,12,48,17.05,53
-SKU_0026,Degree before,Frozen,SUP_005,12,48,11.42,34
-SKU_0027,Per result,Bakery,SUP_008,24,24,28.36,21
-SKU_0028,East article,Fruits,SUP_003,6,24,38.3,27
-SKU_0029,Owner stop,Personal Care,SUP_001,12,48,2.41,77
-SKU_0030,Newspaper project,Bakery,SUP_002,24,24,14.76,14
-SKU_0031,Game ahead,Dairy,SUP_003,1,48,22.26,75
-SKU_0032,Ground push,Snacks,SUP_009,12,24,32.86,63
-SKU_0033,During who,Frozen,SUP_010,24,48,21.83,57
-SKU_0034,Social source,Personal Care,SUP_009,12,48,29.26,31
-SKU_0035,Camera world,Frozen,SUP_007,6,48,25.02,47
-SKU_0036,Series man,Frozen,SUP_002,12,48,40.54,91
-SKU_0037,Yes tree,Frozen,SUP_009,12,12,17.16,35
-SKU_0038,Record author,Snacks,SUP_008,6,48,26.51,71
-SKU_0039,Good cost,Personal Care,SUP_003,6,48,9.25,55
-SKU_0040,Gun business,Vegetables,SUP_003,1,24,26.0,20
-SKU_0041,If teach,Dairy,SUP_003,12,24,12.3,64
-SKU_0042,Necessary take,Beverages,SUP_004,1,24,11.01,34
-SKU_0043,House charge,Meat,SUP_008,1,24,18.79,17
-SKU_0044,Life energy,Vegetables,SUP_006,12,48,4.23,60
-SKU_0045,Deep gas,Frozen,SUP_005,6,12,22.88,42
-SKU_0046,Practice agreement,Personal Care,SUP_009,1,12,46.61,26
-SKU_0047,Tree send,Bakery,SUP_007,12,12,9.33,64
-SKU_0048,Memory compare,Snacks,SUP_006,24,48,23.28,16
-SKU_0049,Us scene,Vegetables,SUP_002,12,12,5.04,11
-SKU_0050,Foot upon,Bakery,SUP_007,1,12,11.18,27
-SKU_0051,List person,Canned,SUP_001,6,24,18.75,86
-SKU_0052,Grow benefit,Bakery,SUP_004,1,12,28.26,35
-SKU_0053,Fine Republican,Bakery,SUP_007,6,48,7.79,59
-SKU_0054,Occur herself,Personal Care,SUP_002,24,24,23.31,66
-SKU_0055,Amount really,Canned,SUP_006,24,24,19.95,42
-SKU_0056,Reach which,Meat,SUP_009,1,24,15.04,47
-SKU_0057,Fund get,Fruits,SUP_010,6,48,48.78,94
-SKU_0058,Full hot,Vegetables,SUP_003,1,24,23.71,54
-SKU_0059,Cultural catch,Snacks,SUP_004,12,48,8.33,79
-SKU_0060,Pull sign,Personal Care,SUP_008,24,48,3.42,43
-SKU_0061,Executive include,Vegetables,SUP_004,12,12,18.51,44
-SKU_0062,Watch box,Personal Care,SUP_006,6,24,20.09,73
-SKU_0063,Suffer make,Fruits,SUP_008,24,48,47.03,94
-SKU_0064,Seem write,Frozen,SUP_002,6,12,17.58,78
-SKU_0065,Within two,Snacks,SUP_004,12,24,25.61,76
-SKU_0066,Trial factor,Bakery,SUP_001,1,12,32.58,39
-SKU_0067,Rise show,Vegetables,SUP_003,24,12,32.46,59
-SKU_0068,Window heart,Meat,SUP_004,6,24,39.96,40
-SKU_0069,Visit source,Meat,SUP_006,1,24,43.51,91
-SKU_0070,Nation leader,Meat,SUP_003,24,48,27.86,86
-SKU_0071,By report,Personal Care,SUP_007,1,24,25.14,56
-SKU_0072,Leader more,Fruits,SUP_010,24,48,3.26,55
-SKU_0073,Final gas,Vegetables,SUP_005,12,12,22.15,31
-SKU_0074,Second current,Dairy,SUP_007,12,12,27.33,24
-SKU_0075,Sea approach,Frozen,SUP_008,24,24,21.8,61
-SKU_0076,Institution Democrat,Personal Care,SUP_002,12,48,23.94,36
-SKU_0077,Still those,Snacks,SUP_003,6,48,39.85,98
-SKU_0078,Career scientist,Snacks,SUP_002,1,24,22.0,53
-SKU_0079,Any provide,Fruits,SUP_009,12,48,34.4,16
-SKU_0080,Whatever until,Beverages,SUP_002,12,12,45.7,23
-SKU_0081,Apply lot,Vegetables,SUP_004,24,24,33.05,25
-SKU_0082,Fire determine,Personal Care,SUP_008,24,12,49.15,56
-SKU_0083,Here like,Beverages,SUP_009,24,24,18.97,90
-SKU_0084,Him act,Dairy,SUP_005,24,12,2.81,88
-SKU_0085,Physical interview,Canned,SUP_010,6,12,7.75,35
-SKU_0086,Hot party,Personal Care,SUP_009,24,12,48.46,38
-SKU_0087,Hear experience,Frozen,SUP_005,1,24,8.2,14
-SKU_0088,Marriage right,Snacks,SUP_001,6,48,31.65,67
-SKU_0089,Push worker,Meat,SUP_006,24,12,43.64,54
-SKU_0090,That yard,Dairy,SUP_005,6,12,29.98,65
-SKU_0091,Think ever,Frozen,SUP_009,6,48,11.06,58
-SKU_0092,Region produce,Frozen,SUP_002,6,24,17.5,50
-SKU_0093,Fund your,Meat,SUP_005,6,12,16.23,79
-SKU_0094,Attention over,Fruits,SUP_002,24,48,36.59,29
-SKU_0095,Course seven,Meat,SUP_007,6,48,44.6,17
-SKU_0096,Minute eight,Beverages,SUP_003,12,48,19.84,46
-SKU_0097,Item activity,Vegetables,SUP_010,12,12,5.87,27
-SKU_0098,Add city,Snacks,SUP_001,12,24,28.39,49
-SKU_0099,Democrat owner,Fruits,SUP_002,24,12,28.29,43
-SKU_0100,Can across,Beverages,SUP_007,24,12,10.47,11
+SKU_0001,Raise degree,Beverages,SUP_005,24,24,40.97,57
+SKU_0002,Laugh great,Frozen,SUP_010,24,24,43.42,46
+SKU_0003,Next born,Dairy,SUP_007,24,24,25.36,69
+SKU_0004,Total back,Personal Care,SUP_002,1,12,32.89,30
+SKU_0005,Bring of,Frozen,SUP_004,12,12,34.29,23
+SKU_0006,Perform by,Personal Care,SUP_004,12,48,15.22,92
+SKU_0007,Parent senior,Vegetables,SUP_003,24,24,28.63,63
+SKU_0008,Term sense,Personal Care,SUP_005,1,12,14.72,73
+SKU_0009,Begin should,Frozen,SUP_010,6,24,9.77,36
+SKU_0010,Senior shake,Beverages,SUP_010,24,12,41.28,52
+SKU_0011,Different nearly,Vegetables,SUP_001,6,12,17.27,31
+SKU_0012,Throughout spring,Dairy,SUP_007,1,48,25.97,97
+SKU_0013,Company camera,Frozen,SUP_009,12,24,5.81,87
+SKU_0014,Organization trial,Beverages,SUP_009,24,12,42.59,80
+SKU_0015,Top material,Personal Care,SUP_004,12,24,31.41,35
+SKU_0016,Market put,Meat,SUP_004,1,48,17.85,75
+SKU_0017,Audience sit,Personal Care,SUP_003,12,24,48.41,76
+SKU_0018,But of,Personal Care,SUP_006,6,12,12.95,73
+SKU_0019,Science here,Canned,SUP_003,24,24,35.5,13
+SKU_0020,Check ability,Beverages,SUP_002,24,24,29.96,29
+SKU_0021,Bill nature,Dairy,SUP_001,6,12,44.1,12
+SKU_0022,Event behind,Fruits,SUP_007,1,12,29.44,23
+SKU_0023,Staff image,Bakery,SUP_008,1,48,11.13,63
+SKU_0024,Arrive behavior,Beverages,SUP_003,6,12,24.9,10
+SKU_0025,Sister professor,Fruits,SUP_006,12,24,34.45,35
+SKU_0026,Get firm,Dairy,SUP_010,1,24,10.97,75
+SKU_0027,Region own,Vegetables,SUP_002,6,48,49.65,27
+SKU_0028,Style particular,Bakery,SUP_005,24,24,40.57,40
+SKU_0029,Affect current,Frozen,SUP_004,1,12,44.19,95
+SKU_0030,Glass him,Snacks,SUP_002,12,24,16.49,33
+SKU_0031,Mission staff,Canned,SUP_008,1,48,40.22,77
+SKU_0032,Range prove,Personal Care,SUP_005,6,24,16.01,48
+SKU_0033,Foot staff,Frozen,SUP_008,24,24,41.47,94
+SKU_0034,Poor there,Canned,SUP_009,24,24,32.77,90
+SKU_0035,Explain face,Personal Care,SUP_002,1,48,38.51,30
+SKU_0036,Simple feel,Canned,SUP_006,12,24,24.97,77
+SKU_0037,Serve conference,Fruits,SUP_010,12,24,4.05,88
+SKU_0038,Clearly evening,Frozen,SUP_004,12,24,12.03,92
+SKU_0039,Happy relate,Snacks,SUP_008,1,24,43.39,33
+SKU_0040,Building investment,Vegetables,SUP_004,6,24,20.78,39
+SKU_0041,Alone sit,Dairy,SUP_008,24,24,28.29,11
+SKU_0042,Respond difference,Dairy,SUP_008,1,24,26.13,58
+SKU_0043,Ready because,Frozen,SUP_003,6,48,24.38,24
+SKU_0044,Federal perhaps,Personal Care,SUP_001,1,24,20.72,12
+SKU_0045,If size,Personal Care,SUP_009,1,24,9.49,80
+SKU_0046,Wind likely,Dairy,SUP_006,6,24,12.78,59
+SKU_0047,Music stand,Fruits,SUP_002,1,24,31.38,16
+SKU_0048,Mouth recently,Personal Care,SUP_005,1,24,23.3,60
+SKU_0049,Author star,Beverages,SUP_008,6,12,10.87,59
+SKU_0050,Value develop,Fruits,SUP_003,24,24,27.88,50
+SKU_0051,Fact themselves,Beverages,SUP_004,1,12,10.43,30
+SKU_0052,Song poor,Canned,SUP_003,12,48,45.07,54
+SKU_0053,Day state,Beverages,SUP_006,24,24,17.76,53
+SKU_0054,Clearly generation,Vegetables,SUP_006,12,12,12.66,27
+SKU_0055,Along shoulder,Personal Care,SUP_005,12,48,22.56,37
+SKU_0056,This ahead,Beverages,SUP_007,6,48,34.18,28
+SKU_0057,Sense be,Bakery,SUP_008,6,48,3.32,65
+SKU_0058,Might Mrs,Personal Care,SUP_005,6,24,40.39,15
+SKU_0059,Eight positive,Beverages,SUP_003,12,12,31.03,12
+SKU_0060,Population woman,Dairy,SUP_002,24,48,29.51,35
+SKU_0061,Full idea,Snacks,SUP_002,24,48,30.12,66
+SKU_0062,Such management,Beverages,SUP_009,6,12,28.82,14
+SKU_0063,Try stop,Bakery,SUP_003,12,12,35.15,17
+SKU_0064,His decide,Beverages,SUP_008,6,12,3.58,47
+SKU_0065,This return,Meat,SUP_008,6,12,40.5,99
+SKU_0066,Exactly imagine,Snacks,SUP_003,12,12,46.59,20
+SKU_0067,Raise population,Dairy,SUP_005,1,48,2.36,17
+SKU_0068,Goal wear,Bakery,SUP_010,1,48,0.51,100
+SKU_0069,Medical wrong,Vegetables,SUP_007,12,12,43.56,24
+SKU_0070,Look Congress,Bakery,SUP_009,6,24,36.18,20
+SKU_0071,Though cause,Snacks,SUP_006,6,24,28.6,40
+SKU_0072,Girl apply,Personal Care,SUP_005,12,24,42.39,37
+SKU_0073,Song involve,Bakery,SUP_003,6,12,37.2,96
+SKU_0074,Government require,Snacks,SUP_005,6,48,0.72,28
+SKU_0075,Use something,Frozen,SUP_003,24,24,22.69,30
+SKU_0076,Yard want,Vegetables,SUP_002,6,12,38.5,15
+SKU_0077,Debate tell,Fruits,SUP_010,12,48,39.59,84
+SKU_0078,Easy arrive,Dairy,SUP_006,12,12,38.31,40
+SKU_0079,Child value,Fruits,SUP_004,1,48,30.65,27
+SKU_0080,Customer color,Canned,SUP_008,24,48,43.79,53
+SKU_0081,Address physical,Canned,SUP_005,24,24,41.94,98
+SKU_0082,Purpose its,Canned,SUP_003,12,24,40.62,44
+SKU_0083,Tough be,Vegetables,SUP_010,1,24,15.9,39
+SKU_0084,People keep,Vegetables,SUP_009,12,24,27.46,43
+SKU_0085,Kitchen nothing,Canned,SUP_007,6,12,8.86,85
+SKU_0086,Figure future,Vegetables,SUP_003,1,12,11.28,79
+SKU_0087,To argue,Personal Care,SUP_002,12,48,45.46,42
+SKU_0088,Beyond including,Vegetables,SUP_003,24,12,32.18,43
+SKU_0089,Among operation,Frozen,SUP_006,12,48,45.3,69
+SKU_0090,Employee box,Dairy,SUP_007,24,48,2.72,17
+SKU_0091,On say,Frozen,SUP_010,12,24,39.11,69
+SKU_0092,Customer simply,Bakery,SUP_009,6,12,40.63,85
+SKU_0093,Those father,Frozen,SUP_008,6,24,45.75,24
+SKU_0094,Human quality,Personal Care,SUP_005,24,12,22.84,22
+SKU_0095,Enter mother,Frozen,SUP_004,12,48,15.19,86
+SKU_0096,Low born,Fruits,SUP_006,12,48,27.58,13
+SKU_0097,Part officer,Personal Care,SUP_002,24,24,35.76,37
+SKU_0098,Perhaps bar,Dairy,SUP_005,24,24,7.68,44
+SKU_0099,Almost four,Canned,SUP_006,12,48,2.69,32
+SKU_0100,First less,Meat,SUP_001,12,12,40.39,11
