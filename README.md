@@ -238,7 +238,7 @@ procurement-pipeline/
 
 ## 🔧 Components Explained
 
-### 1. Data Generation (`main.py`)
+### 1. Data Generation/Ingest (`main.py`)
 
 **Purpose**: Simulates daily operational data
 
