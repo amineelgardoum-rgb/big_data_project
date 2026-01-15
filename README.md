@@ -151,9 +151,9 @@ pip install -r requirements.txt
 ```bash
 # Your docker-compose should have:
 - namenode (HDFS)
-- datanode (HDFS)
-- trino (Query engine) # Query engine to make the quieres of sql fast (distributed)
-- postgres (Master data)
+- datanode (HDFS) (and its replicas)
+- trino (Query engine) # Query engine 
+- postgres (Master data) (metastore data)
 ```
 
 ---
@@ -182,7 +182,7 @@ procurement-pipeline/
 |   |    |    ├── hive.properties          # connect properties for hive connection
 |   |    |    └── postgresql.properties    # connect properties for postgres connection
 |   |    └── hdfs/                         # hdfs connection settings
-|   |         ├── config-site.xml    
+|   |         ├── config-site.xml  
 |   |         ├── core-site.xml   
 |   |         └── hdfs-site.xml   
 |   ├── config.properties  
