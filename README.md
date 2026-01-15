@@ -16,11 +16,9 @@
 
 ![sequence diagram](assets/seq_diag.png)
 
-### use case diagram
-
-![use_case diagram](assets/use_case_diag.png)
-
 ---
+
+
 
 ## 📋 Table of Contents
 
