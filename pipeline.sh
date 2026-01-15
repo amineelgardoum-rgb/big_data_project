@@ -144,10 +144,13 @@ HDFS_DIR="/processed/suppliers_order/${DATE}"
 CONTAINER_OUTPUT_DIR="/output/${DATE}"
 
 # Ensure HDFS directory exists
-docker exec namenode hdfs dfs -mkdir -p "${HDFS_DIR}"
+docker exec namenode bash -c "hdfs dfs -mkdir -p \"${HDFS_DIR}\""
+
 
 # Put files into HDFS from mounted volume
-docker exec namenode hdfs dfs -put -f ${CONTAINER_OUTPUT_DIR}/* "${HDFS_DIR}/"
+docker exec namenode bash -c "hdfs dfs -put -f ${CONTAINER_OUTPUT_DIR}/* \"${HDFS_DIR}/\""
+docker exec namenode bash -c "hdfs dfs -put /logs/exceptions/2026-01-15_exceptions.jsonl ${HDFS_DIR}/"
+
 
 
 echo "The processed data is pushed to HDFS under ${HDFS_DIR}."
