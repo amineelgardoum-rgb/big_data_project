@@ -1,17 +1,27 @@
 # Procurement Data Pipeline
+
 ## Architecture Overview
+
 ![Pipeline Architecture](assets/architecture.png)
+
 ## useful diagrams
+
 ---
 
 ### activate diagram
+
 ![activate diagram](assets/activ_diag.png)
+
 ### sequence diagram
+
 ![sequence diagram](assets/seq_diag.png)
+
 ### use case diagram
+
 ![use_case diagram](assets/use_case_diag.png)
 
 ---
+
 ## 📋 Table of Contents
 
 - [Project Overview](#project-overview)
@@ -122,20 +132,28 @@ An automated data pipeline that:
 - **Git Bash** (for Windows) or regular Bash (Linux/Mac)
 - **Python 3.8+** (for data generation)
 
+---
+
+### install required packages
+
+```bash
+python -m venv venv # to init a venv in python setup
+```
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
 ### Docker Containers Running
 
 ```bash
 # Your docker-compose should have:
 - namenode (HDFS)
 - datanode (HDFS)
-- trino (Query engine)
+- trino (Query engine) # Query engine to make the quieres of sql fast (distributed)
 - postgres (Master data)
-```
-
-### Python Libraries
-
-```bash
-pip install faker pandas
 ```
 
 ---
@@ -164,10 +182,10 @@ procurement-pipeline/
 |   |    |    ├── hive.properties          # connect properties for hive connection
 |   |    |    └── postgresql.properties    # connect properties for postgres connection
 |   |    └── hdfs/                         # hdfs connection settings
-|   |         ├── config-site.xml        
+|   |         ├── config-site.xml    
 |   |         ├── core-site.xml   
-|   |         └── hdfs-site.xml       
-|   ├── config.properties      
+|   |         └── hdfs-site.xml   
+|   ├── config.properties  
 |   ├── jvm.config 
 |   └── node.properties
 |  
@@ -270,6 +288,7 @@ SUP002      | Dairy Products Inc      | sup2@example.com     | 1
 ```
 
 #### **products**
+
 ```sql
 | sku_id | category   | product_name   | supplier_id | pack_size | min_order_qty | unit_price | safety_stock |
 | ------ | ---------- | -------------- | ----------- | --------- | ------------- | ---------- | ------------ |
@@ -466,24 +485,24 @@ HAVING SUM(quantity_ordered) > products.safety_stock * 5
 [1/5] Data Generation & Ingestion
       ↓ python main.py
       Creates fake data → Uploads to HDFS
-    
+  
 [2/5] Calculate Net Demand
       ↓ Trino SQL query
       Reads: orders + inventory + products
       Outputs: all_orders_YYYY-MM-DD.jsonl
-    
+  
 [3/5] Split by Supplier
       ↓ Bash text processing
       Creates: order_SUP001_YYYY-MM-DD.jsonl (per supplier)
-    
+  
 [4/5] Exception Report
       ↓ Trino SQL query
       Outputs: YYYY-MM-DD_exceptions.jsonl
-    
+  
 [5/5] Summary Report
       ↓ Bash text generation
       Outputs: YYYY-MM-DD.txt
-    
+  
 [6] Archive to HDFS
       ↓ Docker + HDFS commands
       Copies: outputs → /processed/suppliers_order/
@@ -756,14 +775,10 @@ SELECT * FROM orders WHERE orders_date = 'YYYY-MM-DD'
 ```
 Trino Coordinator
     ↓
-    ├─ Worker 1: Read /raw/orders/YYYY-MM-DD/ (partition 1)
-    ├─ Worker 2: Read /raw/orders/YYYY-MM-DD/ (partition 2)
-    ├─ Worker 3: Read PostgreSQL products table
-    └─ Worker 4: Read /raw/stock/YYYY-MM-DD/
-    ↓
-Coordinator: Joins, aggregates, calculates
+    └─ Worker 1: Reads everything + joins + aggregates
     ↓
 Returns: Final results
+
 ```
 
 ---
