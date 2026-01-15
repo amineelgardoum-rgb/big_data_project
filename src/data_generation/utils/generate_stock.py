@@ -3,6 +3,8 @@ import random
 from datetime import datetime
 import os
 from .log import log
+from .date import DATE
+seed=int(DATE)
 
 def generate_stock_snapshot(date_str):
     """Generate end-of-day stock snapshot for all warehouses

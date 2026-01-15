@@ -4,8 +4,12 @@ import json
 import random
 import os
 from .log import log
+from .date import DATE
+seed=int(DATE)
 
-fake = Faker()
+fake=Faker()
+Faker.seed(seed)
+
 
 
 def generate_daily_orders(date_str, num_pos, orders_per_pos=100):

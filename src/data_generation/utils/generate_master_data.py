@@ -3,9 +3,11 @@ import pandas as pd
 from .log import log 
 # import psycopg2
 import random 
+from .date import DATE
+seed=int(DATE)
 
 fake=Faker()
-
+Faker.seed(seed)
 def generate_suppliers(n=10):
     """Generate supplier data"""
     suppliers=[]
