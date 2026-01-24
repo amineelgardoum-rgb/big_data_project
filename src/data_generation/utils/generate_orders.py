@@ -5,10 +5,9 @@ import random
 import os
 from .log import log
 from .date import DATE
-seed=int(DATE)
 
 fake=Faker()
-Faker.seed(seed)
+
 
 
 
