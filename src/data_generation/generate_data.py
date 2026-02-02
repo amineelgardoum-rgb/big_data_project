@@ -5,11 +5,11 @@ from src.data_generation.utils.log import log
 import os
 import psycopg2
 from datetime import datetime  # standard library, absolute import is fine
-
+today=datetime.now().strftime('%Y-%m-%d')
 from datetime import datetime 
 def generate_data():
     # Generate master data (postgres injection)
-    today=datetime.now().strftime('%Y-%m-%d')
+    
     suppliers_df=generate_suppliers(10)
     products_df=generate_products(100,suppliers_df)
     warehouses_df=generate_warehouses(3)
@@ -36,7 +36,7 @@ def generate_data():
     ) as conn:
         load_to_postgres(tables_to_load, conn)
 
-    
+if __name__=="__main__":
     
     log("Master data is generated successfully!","SUCCESS")
     # Generate daily orders,snapshot of warehouse (the mount to hdfs)

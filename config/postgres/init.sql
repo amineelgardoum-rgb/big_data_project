@@ -27,15 +27,39 @@ BEGIN
    END IF;
 END
 $$;
-
 GRANT ALL PRIVILEGES ON DATABASE procurement_db TO procurement_user;
+DROP DATABASE IF EXISTS kestra_db;
+CREATE DATABASE kestra_db;
+DO
+$$
+BEGIN
+   IF NOT EXISTS (SELECT FROM pg_catalog.pg_roles WHERE rolname = 'kestra_user') THEN
+      CREATE USER kestra_user WITH PASSWORD 'k3str4';
+   END IF;
+END
+$$;
+
+
+
+GRANT ALL PRIVILEGES ON DATABASE kestra_db TO kestra_user;
+
+\c kestra_db
+
+GRANT ALL PRIVILEGES ON SCHEMA public TO kestra_user;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO kestra_user;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO kestra_user;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
+GRANT ALL PRIVILEGES ON TABLES TO kestra_user;
+
 
 -- Now create your tables inside the application DB
 -- Connect to the procurement_db as postgres_admin
 \c procurement_db
 
--- Grant all privileges on all tables to the user
+GRANT ALL PRIVILEGES ON SCHEMA public TO procurement_user;
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO procurement_user;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO procurement_user;
 
 -- Optional: future tables automatically
 ALTER DEFAULT PRIVILEGES IN SCHEMA public
