@@ -36,8 +36,8 @@ def generate_data():
     ) as conn:
         load_to_postgres(tables_to_load, conn)
 
-if __name__=="__main__":
-    
+
+
     log("Master data is generated successfully!","SUCCESS")
     # Generate daily orders,snapshot of warehouse (the mount to hdfs)
     generate_daily_orders(today,num_pos=50,orders_per_pos=50)
