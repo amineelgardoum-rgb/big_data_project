@@ -8,5 +8,5 @@ logs
 output
 # *.txt
 *.pyc.*
-.env
+*.env
 tmp

@@ -41,7 +41,6 @@ def generate_daily_orders(date_str, num_pos, orders_per_pos=100):
                     }
                     orders.append(order)
                     f.write(json.dumps(order) + "\n")
-                    
-        log(f"Generated {len(orders)} order items for POS_{pos_num:03d}", "SUCCESS")
+
 
     log(f"All orders for {date_str} generated successfully!", "SUCCESS")
