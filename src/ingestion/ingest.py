@@ -24,3 +24,6 @@ def ingest():
 
     log("Verifying ingestion...", "INFO")
     verify_ingestion()
+
+if __name__=="__main__":
+    ingest()
